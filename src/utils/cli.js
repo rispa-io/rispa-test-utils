@@ -14,6 +14,16 @@ const createProject = (path, projectName, plugins) => runCommand(
   options
 )
 
+const runPackageScript = (projectPath, pluginName, scriptName, args) => runCommand(
+  'run',
+  [pluginName, scriptName, ...args],
+  {
+    cwd: projectPath,
+  },
+  options,
+)
+
 module.exports = {
   createProject,
+  runPackageScript,
 }

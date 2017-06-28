@@ -6,6 +6,10 @@ const { scanDependencies } = require('../utils/plugin')
 const { PROJECT_NAME } = require('../constants')
 
 class InitCommand extends Command {
+  constructor([...args], options) {
+    super(options)
+  }
+
   init() {
     this.add([
       {

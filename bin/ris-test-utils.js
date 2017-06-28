@@ -3,9 +3,11 @@
 const { handleError } = require('../src/utils/log')
 
 const InitCommand = require('../src/commands/init')
+const RunCommand = require('../src/commands/run')
 
 const commands = [
   InitCommand,
+  RunCommand,
 ]
 
 const runCommand = ([commandName, ...args]) => {
