@@ -4,9 +4,9 @@ const options = {
   renderer: 'verbose',
 }
 
-const createProject = (path, projectName, plugins) => runCommand(
+const createProject = (path, projectName) => runCommand(
   'new',
-  [projectName, ''].concat(plugins),
+  [projectName],
   {
     cwd: path,
     mode: 'test',

@@ -28,7 +28,7 @@ class InitCommand extends Command {
 
           fs.removeSync(ctx.projectPath)
 
-          return createProject(cwd, PROJECT_NAME, ['@rispa/core'])
+          return createProject(cwd, PROJECT_NAME)
         },
       },
       {
