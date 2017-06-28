@@ -23,7 +23,17 @@ const runPackageScript = (projectPath, pluginName, scriptName, args) => runComma
   options,
 )
 
+const addPlugins = (projectPath, pluginNames) => runCommand(
+  'add',
+  pluginNames,
+  {
+    cwd: projectPath,
+  },
+  options,
+)
+
 module.exports = {
   createProject,
   runPackageScript,
+  addPlugins,
 }

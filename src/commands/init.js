@@ -1,9 +1,9 @@
 const path = require('path')
 const fs = require('fs-extra')
 const Command = require('@rispa/cli/src/Command')
-const { createProject } = require('../utils/cli')
-const { scanDependencies } = require('../utils/plugin')
-const { PROJECT_NAME } = require('../constants')
+const { createProject, addPlugins } = require('../utils/cli')
+const { readPackageJson, getDependencies } = require('../utils/plugin')
+const { PROJECT_NAME, PLUGIN_TARGET_PATH } = require('../constants')
 
 class InitCommand extends Command {
   constructor([...args], options) {
@@ -15,7 +15,9 @@ class InitCommand extends Command {
       {
         title: 'Scan plugin',
         task: ctx => {
-          ctx.dependencies = scanDependencies(ctx.cwd)
+          const packageJson = readPackageJson(ctx.cwd)
+          ctx.name = packageJson.name
+          ctx.dependencies = getDependencies(packageJson)
         },
       },
       {
@@ -26,7 +28,23 @@ class InitCommand extends Command {
 
           fs.removeSync(ctx.projectPath)
 
-          return createProject(cwd, PROJECT_NAME, ctx.dependencies)
+          return createProject(cwd, PROJECT_NAME, ['@rispa/core'])
+        },
+      },
+      {
+        title: 'Add dependencies',
+        task: ctx => {
+          const pluginTarget = path.resolve(ctx.projectPath, PLUGIN_TARGET_PATH)
+
+          fs.ensureDirSync(pluginTarget)
+          const exludeDirs = ['/build/', '/node_modules/']
+          fs.copySync(ctx.cwd, pluginTarget, {
+            filter: src => !exludeDirs.some(dir => src.indexOf(dir) !== -1),
+          })
+
+          // fs.ensureSymlinkSync(ctx.cwd, pluginTarget, 'dir')
+
+          return addPlugins(ctx.projectPath, ctx.dependencies)
         },
       },
     ])

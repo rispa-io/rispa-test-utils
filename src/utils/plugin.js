@@ -7,14 +7,14 @@ const readPackageJson = pluginPath => {
   return fs.readJsonSync(packageJsonPath, { throws: false }) || {}
 }
 
-const scanDependencies = pluginPath => {
-  const { dependencies, devDependencies, peerDependencies, name: packageName } = readPackageJson(pluginPath)
+const getDependencies = packageJson => {
+  const { dependencies, devDependencies, peerDependencies } = packageJson
   return Object.entries(Object.assign({}, dependencies, devDependencies, peerDependencies))
     .filter(([name]) => name.startsWith(PLUGIN_PREFIX))
-    .map(([name]) => name).concat(packageName)
+    .map(([name]) => name)
 }
 
 module.exports = {
   readPackageJson,
-  scanDependencies,
+  getDependencies,
 }
