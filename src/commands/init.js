@@ -39,10 +39,11 @@ class InitCommand extends Command {
           fs.ensureDirSync(pluginTarget)
           const exludeDirs = ['/build/', '/node_modules/']
           fs.copySync(ctx.cwd, pluginTarget, {
-            filter: src => !exludeDirs.some(dir => src.indexOf(dir) !== -1),
+            filter: src => {
+              const relSrc = path.relative(ctx.cwd, src)
+              return !exludeDirs.some(dir => relSrc.indexOf(dir) !== -1)
+            },
           })
-
-          // fs.ensureSymlinkSync(ctx.cwd, pluginTarget, 'dir')
 
           return addPlugins(ctx.projectPath, ctx.dependencies)
         },
