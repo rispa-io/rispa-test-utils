@@ -5,7 +5,9 @@ const { PROJECT_NAME } = require('../constants')
 
 class RunCommand extends Command {
   constructor([pluginName, scriptName, ...args], options) {
-    super(options)
+    super(Object.assign({
+      renderer: 'silent',
+    }, options))
 
     this.state = {
       pluginName,

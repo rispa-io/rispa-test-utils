@@ -2,8 +2,9 @@
 # yarn lockfile v1
 
 
-"@rispa/cli@file:../rispa-cli":
+"@rispa/cli@https://github.com/rispa-io/rispa-cli.git#feature/test-mode":
   version "1.0.1"
+  resolved "https://github.com/rispa-io/rispa-cli.git#bfc17c3eb3876308ff348dc1fc014534c472707a"
   dependencies:
     "@rispa/generator" "1.0.0"
     axios "^0.16.1"
