@@ -1,4 +1,5 @@
 const { runCommand } = require('@rispa/cli')
+const { ALL_PLUGINS } = require('@rispa/cli/src/constants')
 
 const options = {
   renderer: 'verbose',
@@ -32,8 +33,18 @@ const addPlugins = (projectPath, pluginNames) => runCommand(
   options,
 )
 
+const updatePlugins = projectPath => runCommand(
+  'update',
+  [ALL_PLUGINS],
+  {
+    cwd: projectPath,
+  },
+  options,
+)
+
 module.exports = {
   createProject,
   runPackageScript,
   addPlugins,
+  updatePlugins,
 }
