@@ -24,11 +24,12 @@ class InitCommand extends Command {
         title: 'Create project',
         task: ctx => {
           const { cwd } = ctx
-          ctx.projectPath = path.resolve(cwd, `./${PROJECT_NAME}`)
+          const runPath = path.resolve(cwd, '..')
 
+          ctx.projectPath = path.resolve(runPath, `./${PROJECT_NAME}`)
           fs.removeSync(ctx.projectPath)
 
-          return createProject(cwd, PROJECT_NAME)
+          return createProject(runPath, PROJECT_NAME)
         },
       },
       {

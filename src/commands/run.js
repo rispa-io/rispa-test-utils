@@ -20,7 +20,7 @@ class RunCommand extends Command {
         title: 'Run package script',
         task: ({ cwd }) => {
           const { pluginName, scriptName, args } = this.state
-          const projectPath = path.resolve(cwd, `./${PROJECT_NAME}`)
+          const projectPath = path.resolve(cwd, `../${PROJECT_NAME}`)
 
           return runPackageScript(projectPath, pluginName, scriptName, args)
         },
