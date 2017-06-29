@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs-extra')
 const Command = require('@rispa/cli/src/Command')
+const { CONFIGURATION_PATH } = require('@rispa/cli/src/constants')
 const { createProject, addPlugins, updatePlugins } = require('../utils/cli')
 const { readPackageJson, getDependencies } = require('../utils/plugin')
 const { PROJECT_NAME, PLUGIN_TARGET_PATH } = require('../constants')
@@ -20,13 +21,17 @@ class InitCommand extends Command {
           ctx.dependencies = getDependencies(packageJson)
           ctx.runPath = path.resolve(ctx.cwd, '..')
           ctx.projectPath = path.resolve(ctx.runPath, `./${PROJECT_NAME}`)
-          ctx.cache = fs.existsSync(ctx.projectPath)
+          ctx.cache = fs.existsSync(path.resolve(ctx.projectPath, CONFIGURATION_PATH))
         },
       },
       {
         title: 'Create project',
         skip: ({ cache }) => cache && 'Cache',
-        task: ({ runPath }) => createProject(runPath, PROJECT_NAME),
+        task: ({ runPath, projectPath }) => {
+          fs.removeSync(projectPath)
+
+          return createProject(runPath, PROJECT_NAME)
+        },
       },
       {
         title: 'Add dependencies',
