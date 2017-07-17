@@ -7,7 +7,7 @@ const webpackBuild = {
   title: 'Start server test',
   task: ({ projectPath }) => {
     const startTime = Date.now()
-    const server = runPackageScript(projectPath, 'server', 'start-prod')
+    const server = runPackageScript(projectPath, 'server', 'start-dev')
 
     return new Promise((resolve, reject) => {
       let timeout
