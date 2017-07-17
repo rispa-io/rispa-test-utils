@@ -3,9 +3,11 @@ const path = require('path')
 const Command = require('@rispa/cli/src/Command')
 const { PROJECT_NAME } = require('../constants')
 const webpackBuild = require('../scenarios/webpackBuild')
+const storybookBuild = require('../scenarios/storybookBuild')
 
 const scenarios = {
   'webpack-build': webpackBuild,
+  'storybook-build': storybookBuild,
 }
 
 class AcceptanceCommand extends Command {
