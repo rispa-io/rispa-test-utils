@@ -9,7 +9,7 @@ const scenarios = {
 }
 
 class AcceptanceCommand extends Command {
-  constructor([scenarioNames], options) {
+  constructor([...scenarioNames], options) {
     super(options)
 
     this.state = {
