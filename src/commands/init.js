@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs-extra')
 const Command = require('@rispa/cli/src/Command')
-const { CONFIGURATION_PATH } = require('@rispa/cli/src/constants')
+const { CONFIGURATION_PATH, ALL_PLUGINS } = require('@rispa/cli/src/constants')
 const { createProject, addPlugins, updatePlugins, runPackageScript } = require('../utils/cli')
 const { readPackageJson, getDependencies } = require('../utils/plugin')
 const { PROJECT_NAME, PLUGIN_TARGET_PATH } = require('../constants')
@@ -57,7 +57,7 @@ class InitCommand extends Command {
       {
         title: 'Build plugins',
         task: ({ projectPath }) => {
-          return runPackageScript(projectPath, 'all', 'build', args)
+          return runPackageScript(projectPath, ALL_PLUGINS, 'build', [])
         },
       },
     ])
