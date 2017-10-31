@@ -1,6 +1,6 @@
 {
   "name": "@rispa/test-utils",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Rispa test utils",
   "main": "bin/ris-test-utils.js",
   "bin": {
