@@ -4,10 +4,12 @@ const createDebug = require('debug')
 
 const InitCommand = require('../src/commands/init')
 const RunCommand = require('../src/commands/run')
+const AcceptanceCommand = require('../src/commands/acceptance')
 
 const commands = [
   InitCommand,
   RunCommand,
+  AcceptanceCommand,
 ]
 
 const logError = createDebug('rispa:error:test-utils')

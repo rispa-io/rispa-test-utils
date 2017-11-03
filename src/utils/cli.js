@@ -15,7 +15,7 @@ const createProject = (path, projectName) => runCommand(
   options
 )
 
-const runPackageScript = (projectPath, pluginName, scriptName, args) => runCommand(
+const runPackageScript = (projectPath, pluginName, scriptName, args = []) => runCommand(
   'run',
   [pluginName, scriptName, ...args],
   {
