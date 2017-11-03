@@ -15,6 +15,14 @@ const createProject = (path, projectName) => runCommand(
   options
 )
 
+const migrateProject = projectPath => runCommand(
+  'migrate',
+  {
+    cwd: projectPath,
+  },
+  options
+)
+
 const runPackageScript = (projectPath, pluginName, scriptName, args) => runCommand(
   'run',
   [pluginName, scriptName, ...args],
@@ -47,4 +55,5 @@ module.exports = {
   runPackageScript,
   addPlugins,
   updatePlugins,
+  migrateProject,
 }

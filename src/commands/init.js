@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs-extra')
 const Command = require('@rispa/cli/src/Command')
 const { CONFIGURATION_PATH, ALL_PLUGINS } = require('@rispa/cli/src/constants')
-const { createProject, addPlugins, updatePlugins, runPackageScript } = require('../utils/cli')
+const { createProject, addPlugins, updatePlugins, runPackageScript, migrateProject } = require('../utils/cli')
 const { readPackageJson, getDependencies } = require('../utils/plugin')
 const { PROJECT_NAME, PLUGIN_TARGET_PATH } = require('../constants')
 
@@ -31,6 +31,13 @@ class InitCommand extends Command {
           fs.removeSync(projectPath)
 
           return createProject(runPath, PROJECT_NAME)
+        },
+      },
+      {
+        title: 'Migrate project',
+        skip: ({ cache }) => !cache && 'New project fit latest config',
+        task: ({ projectPath }) => {
+          return migrateProject(projectPath)
         },
       },
       {

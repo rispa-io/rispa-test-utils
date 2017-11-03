@@ -10,7 +10,7 @@
   "author": "dvpetrov <dvpetrov.main@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@rispa/cli": "latest",
+    "@rispa/cli": ">= 4.x.x",
     "debug": "^2.6.8",
     "fs-extra": "^3.0.1",
     "listr": "^0.12.0"
