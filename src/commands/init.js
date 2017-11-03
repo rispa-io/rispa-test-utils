@@ -57,7 +57,7 @@ class InitCommand extends Command {
       {
         title: 'Build plugins',
         task: ({ projectPath }) => {
-          return runPackageScript(projectPath, ALL_PLUGINS, 'build', [])
+          return runPackageScript(projectPath, ALL_PLUGINS, 'compile', [])
         },
       },
     ])
