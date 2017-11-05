@@ -17,6 +17,7 @@ const createProject = (path, projectName) => runCommand(
 
 const migrateProject = projectPath => runCommand(
   'migrate',
+  [],
   {
     cwd: projectPath,
   },
