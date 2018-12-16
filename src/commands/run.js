@@ -17,7 +17,7 @@ class RunCommand extends Command {
   }
 
   init() {
-    this.add([
+    return [
       {
         title: 'Run package script',
         task: ({ cwd }) => {
@@ -27,7 +27,7 @@ class RunCommand extends Command {
           return runPackageScript(projectPath, pluginName, scriptName, args)
         },
       },
-    ])
+    ]
   }
 }
 

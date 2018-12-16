@@ -12,7 +12,7 @@ class InitCommand extends Command {
   }
 
   init() {
-    this.add([
+    return [
       {
         title: 'Init',
         task: ctx => {
@@ -61,13 +61,7 @@ class InitCommand extends Command {
           return addPlugins(ctx.projectPath, ctx.dependencies)
         },
       },
-      {
-        title: 'Build plugins',
-        task: ({ projectPath }) => {
-          return runPackageScript(projectPath, ALL_PLUGINS, 'compile', [])
-        },
-      },
-    ])
+    ]
   }
 }
 
