@@ -32,7 +32,6 @@ const runCommand = ([commandName, ...args]) => {
   }
 
   const command = new Command(args, { renderer: 'verbose' })
-  command.init()
   command.run({
     cwd: process.cwd(),
   }).catch(handleError)
